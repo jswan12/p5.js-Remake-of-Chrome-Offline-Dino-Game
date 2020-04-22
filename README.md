@@ -1,6 +1,8 @@
 # p5.js | Remake of Chrome Offline Dino Game
 
-![Try out the game live!](../master/sprites/ingame.png)
+![alt text](../master/sprites/ingame.png "Remake of Chrome Offline Dino Game")
+
+[Try out the game live!](https://www.openprocessing.org/sketch/878572/embed/)
 
 ## Controls
 ▲ Jump | ▼ Duck
