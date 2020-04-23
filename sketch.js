@@ -4,6 +4,8 @@ var cloud_Sprite, cloud_SpawnPoint, cloud_TimeUntilNextSpawn, cloud_SpawnRate, c
 var bird1_Sprite, bird2_Sprite, bird_SpawnPoint, bird_TimeUntilNextSpawn, bird_SpawnRate, bird_ScrollSpeed, birdsArray;
 var cactus1_Sprite, cactus2_Sprite, cactus3_Sprite, cactus4_Sprite, cactus5_Sprite;
 var cacti_SpawnPoint, cacti_TimeUntilNextSpawn, cacti_SpawnRate, cacti_ScrollSpeed, cactiArray;
+var restart_button;
+
 function preload() {
 
 	ground_Sprite = loadImage("spritesheet.png");
@@ -16,13 +18,18 @@ function preload() {
 	cactus4_Sprite = loadImage("CACTUS4.png");
 	cactus5_Sprite = loadImage("CACTUS5.png");
 	restart_Sprite = loadImage("1x-restart.png");
-  dino = new Dino();
+	button = createImg("1x-restart.png", "Play Again");
+	button.mousePressed(setup);
+	button.hide();
 }
 
 function setup() {
 	createCanvas(600, 150);
 	//imageMode(CENTER);
 	imageMode(CORNER);
+	
+	dino = new Dino();
+	
   ground1_Position = ground1_SpawnPoint = -2;
 	ground2_Position = ground2_SpawnPoint = 1198;
 	ground_ScrollSpeed = 5;
@@ -47,6 +54,10 @@ function setup() {
 	cactiArray = [];
 	cacti_ScrollSpeed = ground_ScrollSpeed;
 	cacti_SpawnInterval = setInterval(function() {cacti_TimeUntilNextSpawn = cacti_TimeUntilNextSpawn>0?cacti_TimeUntilNextSpawn-1:0;}, 1000);
+
+
+	button.position(width/2, height/2-15);
+	button.hide();
 }
 
 function draw() {
@@ -85,10 +96,10 @@ function draw() {
 	}
 	else {
 		dino.stop();
-		//clearInterval(cloud_SpawnInterval);
-		//clearInterval(bird_SpawnInterval);
-		//clearInterval(cacti_SpawnInterval);
-		image(restart_Sprite, width/2, height/2-15, 36, 32, 0, 0, 36, 32);
+		clearInterval(cloud_SpawnInterval);
+		clearInterval(bird_SpawnInterval);
+		clearInterval(cacti_SpawnInterval);
+		button.show();
 	}
 }
 
